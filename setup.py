@@ -12,7 +12,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.0",
+    version="1.0.2",
 
     description="Event Analysis python workflow",
     long_description=long_description,
@@ -44,7 +44,6 @@ setup(
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language:: Python:: 3:: Only',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -55,9 +54,14 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    #packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=['argparse','io','openpyxl','operator','csv','datetime','gffutils','glob',
+              'itertools','logging','numpy','os','pandas','pybedtools','sqlite3','sys'],
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed.
-    install_requires=['argparse','io','openpyxl','operator','csv','datetime','gffutils','glob','itertools','logging','numpy','os','pandas','pybedtools','sqlite3','sys']
+    install_requires=['argparse>=1.1','pandas>=0.19.2','logging>=0.5.1.2','pybedtools>=0.7.10','sqlite3>=2.6.0',
+                      'csv','numpy','gffutils','glob','Bio','collections','io','openpyxl','operator','datetime',
+                      'itertools','os','pysam','re','sys','matplotlib','cPickle','subprocess','vcf'],
+
 )

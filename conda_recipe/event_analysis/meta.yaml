@@ -1,9 +1,9 @@
 package:
   name: event-analysis
-  version: "1.0.2"
+  version: "1.0.4"
 
 source:
-  git_rev: v1.0.2
+  git_rev: v1.0.4
   git_url: https://github.com/McIntyre-Lab/events.git
   folder: event_analysis
 
@@ -18,9 +18,6 @@ requirements:
     - pybedtools
     - numpy
     - gffutils
-    - openpyxl
-    - pysam
-    - matplotlib
 
 test:
   imports:

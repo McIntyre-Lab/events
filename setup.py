@@ -12,7 +12,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.2",
+    version="1.0.4",
 
     description="Event Analysis python workflow",
     long_description=long_description,
@@ -55,10 +55,10 @@ setup(
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     #packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    packages=['openpyxl','gffutils','numpy','pandas','pybedtools'],
+    packages=['gffutils','numpy','pandas','pybedtools'],
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed.
-    install_requires=['pandas>=0.19.2','pybedtools>=0.7.10','numpy','gffutils','openpyxl'],
+    install_requires=['pandas>=0.19.2','pybedtools>=0.7.10','numpy','gffutils'],
 
 )

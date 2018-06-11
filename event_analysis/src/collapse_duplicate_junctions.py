@@ -19,7 +19,6 @@ import argparse
 import logging
 import sqlite3
 import pandas as pd
-from openpyxl.descriptors.base import ASCII
 
 
 def getOptions():

@@ -3,4 +3,4 @@ $PYTHON event_analysis/setup.py install --single-version-externally-managed --re
 
 # copy executable scripts and documentation to install directory
 if [ ! -e $(pwd)/event_analysis ]; then mkdir -p $(pwd)/event_analysis; fi
-cp -r ${RECIPE_DIR}/event_analysis/* $(pwd)/event_analysis/.
+cp -r ${RECIPE_DIR}/* $(pwd)/event_analysis

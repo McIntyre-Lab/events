@@ -55,13 +55,10 @@ setup(
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     #packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    packages=['argparse','io','openpyxl','operator','csv','datetime','gffutils','glob',
-              'itertools','logging','numpy','os','pandas','pybedtools','sqlite3','sys'],
+    packages=['openpyxl','gffutils','numpy','pandas','pybedtools'],
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed.
-    install_requires=['argparse>=1.1','pandas>=0.19.2','logging>=0.5.1.2','pybedtools>=0.7.10','sqlite3>=2.6.0',
-                      'csv','numpy','gffutils','glob','Bio','collections','io','openpyxl','operator','datetime',
-                      'itertools','os','pysam','re','sys','matplotlib','cPickle','subprocess','vcf'],
+    install_requires=['pandas>=0.19.2','pybedtools>=0.7.10','numpy','gffutils','openpyxl'],
 
 )

@@ -18,20 +18,22 @@ Event Analysis requires the following external python modules:
 #### Installing dependencies using Anaconda:
 NOTE: It is highly recommended you create a new conda environment, as this ensures that you are running/install the correct version of Python and dependencies. To do this, run the command:
 
-    `conda create --name event_analysis python=3.6`
+    conda create --name event_analysis python=3.6
 
 Then activate this environment:
 
-    `conda activate event_analysis`
+    conda activate event_analysis
 
 To install these dependencies via Anaconda run the following:
 
 First, add the bioconda and conda-forge repositories using the commands:
-    `conda config --add channels conda-forge`
-    `conda config --add channels bioconda`
+
+    conda config --add channels conda-forge
+    conda config --add channels bioconda
 
 Then, to install the dependencies:
-    `conda install -c jrbnewman event-analysis`
+
+    conda install -c jrbnewman event-analysis
 
 #### Installing dependencies manually
 
@@ -41,16 +43,16 @@ You can also install the required python modules manually using pip or conda ins
 
 Create and navigate to the path where you would like to install Event Analysis. For example, if you wanted to create an install in your home directory:
 
-    `mkdir -p $HOME/event_analysis`
-    `cd $HOME/event_analysis`
+    mkdir -p $HOME/event_analysis
+    cd $HOME/event_analysis
 
 Next, clone the git repository for Event Analysis using the command:
 
-    `git clone http2://github.com/McIntyre-Lab/events`
+    git clone https://github.com/McIntyre-Lab/events
 
 This will create a local copy of the most recent version of Event Analysis in your specified installation folder. If you prefer not to clone the git repository, you can also obtain the code using:
 
-    `curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.12.tar.gz | tar xz`
+    curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.12.tar.gz | tar xz
 
 This will also unpack the tarball into your Event Analysis install directory.
 

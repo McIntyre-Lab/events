@@ -31,6 +31,5 @@ test:
 
 about:
   home: https://github.com/McIntyre-Lab/events.git
-  license: BSD
-  license_file: LICENSE
+  license: MIT
 

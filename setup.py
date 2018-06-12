@@ -2,17 +2,26 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
+from subprocess import call
+
 
 here = path.abspath(path.dirname(__file__))
 
 with open(path.join(here,'README.md'), encoding='utf-8') as f:
     long_description=f.read()
 
+## Download Event Analysis from git and unpack
+### Check to see if Event Analysis install path has been set, otherwise put it into home folder
+
+call('if [[ -z ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p $HOME/event_analysis2; cd $HOME/event_analysis2; else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p ${EVENT_ANALYSIS_INSTALL_PATH}; cd ${EVENT_ANALYSIS_INSTALL_PATH}; fi; fi && curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.5.tar.gz | tar xz', shell=True)
+
+## Run setup 
+
 setup(
     name='event_analysis',
 
     # Version
-    version="1.0.4",
+    version="1.0.5",
 
     description="Event Analysis python workflow",
     long_description=long_description,
@@ -24,7 +33,7 @@ setup(
     author="Jeremy R. B. Newman",
     author_email="jrbnewman@ufl.edu",
 
-    license="BSD",
+    license="MIT",
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

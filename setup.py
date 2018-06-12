@@ -1,9 +1,10 @@
 # Setup event_analysis
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 from codecs import open
+import os
 from os import path
 from subprocess import call
-
 
 here = path.abspath(path.dirname(__file__))
 
@@ -13,7 +14,15 @@ with open(path.join(here,'README.md'), encoding='utf-8') as f:
 ## Download Event Analysis from git and unpack
 ### Check to see if Event Analysis install path has been set, otherwise put it into home folder
 
-call('if [[ -z ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p $HOME/event_analysis; cd $HOME/event_analysis; else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p ${EVENT_ANALYSIS_INSTALL_PATH}; cd ${EVENT_ANALYSIS_INSTALL_PATH}; fi; fi && curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.7.tar.gz | tar xz', shell=True)
+class MyInstall(install):
+    def run(self):
+        install.run(self)
+        mypath = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)")
+        os.system("echo 'Setting up Event Analysis'")
+        os.system("chmod +x "+mypath+"setup_event_analysis.sh")
+        os.system("sh "+mypath+"setup_event_analysis.sh")
+
+#call('if [[ -z ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p $HOME/event_analysis; cd $HOME/event_analysis; else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p ${EVENT_ANALYSIS_INSTALL_PATH}; cd ${EVENT_ANALYSIS_INSTALL_PATH}; fi; fi && curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.7.tar.gz | tar xz', shell=True)
 
 ## Run setup 
 
@@ -21,7 +30,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.7",
+    version="1.0.9",
 
     description="Event Analysis python workflow",
     long_description=long_description,
@@ -70,4 +79,7 @@ setup(
     # your project is installed.
     install_requires=['pandas>=0.19.2','pybedtools>=0.7.10','numpy','gffutils'],
 
+    # Shell script to run to set everything up
+    scripts=['setup_event_analysis.sh'], 
+    cmdclass={'install': MyInstall},
 )

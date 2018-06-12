@@ -11,10 +11,10 @@ else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]];
 fi
 
 echo "Downloading Event Analysis source code into install path (defaults to ~/event_analysis) ..."
-curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.8.tar.gz | tar xz
+curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.9.tar.gz | tar xz
 
 echo "Installing Event Analysis dependencies ..."
-$PYTHON event_analysis/setup.py install --single-version-externally-managed --record=record.txt  # Python command to install the script.
+$PYTHON ./events-1.0.9/setup.py install --single-version-externally-managed --record=record.txt  # Python command to install the script.
 #echo "Installing Event Analysis to install path (defaults to: $HOME/event_analysis) ..."
 
 

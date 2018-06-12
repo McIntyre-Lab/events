@@ -13,7 +13,7 @@ with open(path.join(here,'README.md'), encoding='utf-8') as f:
 ## Download Event Analysis from git and unpack
 ### Check to see if Event Analysis install path has been set, otherwise put it into home folder
 
-call('if [[ -z ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p $HOME/event_analysis2; cd $HOME/event_analysis2; else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p ${EVENT_ANALYSIS_INSTALL_PATH}; cd ${EVENT_ANALYSIS_INSTALL_PATH}; fi; fi && curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.5.tar.gz | tar xz', shell=True)
+call('if [[ -z ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p $HOME/event_analysis; cd $HOME/event_analysis; else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]]; then mkdir -p ${EVENT_ANALYSIS_INSTALL_PATH}; cd ${EVENT_ANALYSIS_INSTALL_PATH}; fi; fi && curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.7.tar.gz | tar xz', shell=True)
 
 ## Run setup 
 
@@ -21,7 +21,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.6",
+    version="1.0.7",
 
     description="Event Analysis python workflow",
     long_description=long_description,

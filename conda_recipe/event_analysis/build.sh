@@ -14,5 +14,5 @@ else if [[ ! -e ${EVENT_ANALYSIS_INSTALL_PATH} ]];
      fi
 fi
 
-curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.5.tar.gz | tar xz
+curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.7.tar.gz | tar xz
 

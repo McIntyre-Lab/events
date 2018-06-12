@@ -21,7 +21,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.5",
+    version="1.0.6",
 
     description="Event Analysis python workflow",
     long_description=long_description,

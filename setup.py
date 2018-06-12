@@ -17,7 +17,7 @@ with open(path.join(here,'README.md'), encoding='utf-8') as f:
 class MyInstall(install):
     def run(self):
         install.run(self)
-        mypath = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)")
+        mypath = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)") + "/events-1.0.10"
         os.system("echo 'Setting up Event Analysis'")
         os.system("chmod +x "+mypath+"setup_event_analysis.sh")
         os.system("sh "+mypath+"setup_event_analysis.sh")
@@ -30,7 +30,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.9",
+    version="1.0.10",
 
     description="Event Analysis python workflow",
     long_description=long_description,

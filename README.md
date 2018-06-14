@@ -1,4 +1,4 @@
-# Event Analysis v1.0.12
+# Event Analysis v1.0.13
 Event Analysis is an annotation-driven, transcriptional event-based method for transcriptome reference reduction by using the detection and quantification of transcriptonal events (junctions, exons, exon fragments) to identify what transcripts are likely present and which are likely not present given experimental data.
 
 It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (URL to be added).
@@ -52,7 +52,7 @@ Next, clone the git repository for Event Analysis using the command:
 
 This will create a local copy of the most recent version of Event Analysis in your specified installation folder. If you prefer not to clone the git repository, you can also obtain the code using:
 
-    curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.12.tar.gz | tar xz
+    curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.13.tar.gz | tar xz --strip 1
 
 This will also unpack the tarball into your Event Analysis install directory.
 

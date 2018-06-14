@@ -22,11 +22,11 @@
 ###############################################################################
 
 ## Parse command line arguments
-PREFIX=$1
-GFF=$2
-FASTA=$3
-READSIZE=$4
-OUTDIR=$5
+PREFIX=${1}
+GFF=${2}
+FASTA=${3}
+READSIZE=${4}
+OUTDIR=${5}
 
 ## Set paths
 SCRIPTS=$(pwd)/src

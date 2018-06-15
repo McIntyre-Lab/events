@@ -69,7 +69,7 @@ def main():
 
 
     # Open the output BED file
-    with open('aceview_hg19_transcript_junctions.tsv','wb') as outputFile:
+    with open(csvOut,'w') as outputFile:
         for rna in rnas:
 
             # Get all exons
@@ -109,7 +109,7 @@ def main():
                 juncCoord=str(junctionArray[i][0].chrom) + ':' + str(junctionArray[i][0].stop) + ':' + str(junctionArray[i][1].start) + ':' + str(junctionArray[i][0].strand)
                 csvArray=[junctionID, juncCoord, transcriptID, geneID]
                 # Output to BED file
-                csvOut.write(",".join(str(i) for i in csvArray)+"\n")
+                outputFile.write(",".join(str(i) for i in csvArray)+"\n")
     
     csvOut.close()
                         

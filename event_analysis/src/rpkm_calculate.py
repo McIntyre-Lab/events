@@ -147,7 +147,7 @@ def writeOutput(args,bdict,num_mapped_reads,read_length):
 
     if args.cv:
         header = ['sample_id','event_id','mapped_reads','read_length','region_length','region_depth','reads_in_region','apn','rpkm','mean','std','cv']
-        with open(args.out, 'wb') as OUT:
+        with open(args.out, 'w') as OUT:
             OUT.write(','.join(header) + '\n')
             for key in bdict:
                 OUT.write(','.join(str(x) for x in [args.name,key,num_mapped_reads,read_length,bdict[key]['region_length'],bdict[key]['depth'],bdict[key]['reads_in_region'],bdict[key]['apn'],bdict[key]['rpkm'],bdict[key]['mean'],bdict[key]['std'],bdict[key]['cv']]) + '\n')

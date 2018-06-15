@@ -91,7 +91,7 @@ def main():
     genes = db.features_of_type('gene', order_by='start')
 
     # Open the output BED file
-    with open(args.outputFile, 'wb') as outputFile:
+    with open(args.outputFile, 'w') as outputFile:
         for gene in genes:
 
             # Get all exons

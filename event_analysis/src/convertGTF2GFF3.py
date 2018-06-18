@@ -42,7 +42,7 @@ def main():
 
     ### Write GFF output
     
-    with open(args.outputFile, 'wb') as outputFile:
+    with open(args.outputFile, 'w') as outputFile:
         outputFile.write("##gff-version 3" + "\n")
 
         # Import database

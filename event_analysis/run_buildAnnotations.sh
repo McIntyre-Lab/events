@@ -65,7 +65,7 @@ python $SCRIPTS/extractTranscriptJunctions.py --gff ${GFF} --output $OUTDIR/${PR
 # Extract exon-skipping junction annotations
 echo "Extracting exon-skipping annotations"
 python $SCRIPTS/extractSkippedExons.py --gff ${GFF} --otable $OUTDIR/${PREFIX}_exonskipping_junctions.csv \
-#                                                --olist $OUTDIR/${PREFIX}_skipped_exons_list.csv
+                                                --olist $OUTDIR/${PREFIX}_skipped_exons_list.csv
 
 # Build donor-site exon-intron border junctions
 echo "Building donor-site exon-intron border junctions"

@@ -56,7 +56,11 @@ python $SCRIPTS/build_unambiguous_introns_from_fusions.py --input-fusion-file $O
 
 # Extract logical junctions
 echo "Extracting logical junctions"
-python $SCRIPTS/extractJunctions.py --input ${GFF}.db --output $OUTDIR/${PREFIX}_logical_junctions.bed --size 40
+### Size of junction sequences is a maximum of the half of the read size + 12, either side of the junction site
+### Calculate
+JUNCSIZE=$(expr ${READSIZE} / 2)
+
+python $SCRIPTS/extractJunctions.py --input ${GFF}.db --output $OUTDIR/${PREFIX}_logical_junctions.bed --size ${JUNCSIZE}
 
 # Extract junctions annotated to transcripts
 echo "Extracting annotated junctions"
@@ -70,13 +74,13 @@ python $SCRIPTS/extractSkippedExons.py --gff ${GFF} --otable $OUTDIR/${PREFIX}_e
 # Build donor-site exon-intron border junctions
 echo "Building donor-site exon-intron border junctions"
 python $SCRIPTS/build_donor_border_junctions.py --gff ${GFF} --obed $OUTDIR/${PREFIX}_donor_border_junctions.bed \
-                                       --otable $OUTDIR/${PREFIX}_donor_border_junctions.csv --size 40
+                                       --otable $OUTDIR/${PREFIX}_donor_border_junctions.csv --size ${JUNCSIZE}
 
 # Build acceptor-site exon-intron border junctions
 echo "Building acceptor-site exon-intron border junctions"
 python $SCRIPTS/build_acceptor_border_junctions.py --gff ${GFF} \
                                        --obed $OUTDIR/${PREFIX}_acceptor_border_junctions.bed \
-                                       --otable $OUTDIR/${PREFIX}_acceptor_border_junctions.csv --size 40
+                                       --otable $OUTDIR/${PREFIX}_acceptor_border_junctions.csv --size ${JUNCSIZE} 
 
 ### (2) EXON ANNOTATIONS
 # Format exon annotations
@@ -123,7 +127,7 @@ echo "Append border junctions"
 python $SCRIPTS/append_border_junctions.py --input-junctions $OUTDIR/${PREFIX}_logical_junctions_flag_exonskip.csv \
                                   --input-donor-border-junctions $OUTDIR/${PREFIX}_donor_border_junctions.bed \
                                   --input-acceptor-border-junctions $OUTDIR/${PREFIX}_acceptor_border_junctions.bed \
-                                  --junction-size 40 \
+                                  --junction-size ${JUNCSIZE} \
                                   --output $OUTDIR/${PREFIX}_logical_junctions_and_border_junctions.csv
 
 # Add exon info to junctions

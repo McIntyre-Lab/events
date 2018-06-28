@@ -63,5 +63,5 @@ setup(
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed.
-    install_requires=['pandas=0.23.1','pybedtools=0.7.10','numpy=1.14.3','gffutils=0.9'],
+    install_requires=['pandas==0.23.1','pybedtools==0.7.10','numpy==1.14.3','gffutils==0.9'],
 )

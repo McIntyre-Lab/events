@@ -1,9 +1,9 @@
 package:
   name: event-analysis
-  version: "1.0.13d"
+  version: "1.0.13e"
 
 source:
-  git_rev: v1.0.13d
+  git_rev: v1.0.13e
   git_url: https://github.com/McIntyre-Lab/events.git
   folder: event_analysis
 

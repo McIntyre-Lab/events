@@ -1,4 +1,4 @@
-# Event Analysis v1.0.12
+# Event Analysis v1.0.13e
 Event Analysis is an annotation-driven, transcriptional event-based method for transcriptome reference reduction by using the detection and quantification of transcriptonal events (junctions, exons, exon fragments) to identify what transcripts are likely present and which are likely not present given experimental data.
 
 It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (URL to be added).
@@ -8,10 +8,10 @@ It comprises of a collection of python scripts and example shell submission scri
 Installation requirements:
 
 Event Analysis requires the following external python modules:
-    * pandas (>=0.19.2)
-    * pybedtools (>=0.7.10)
-    * numpy
-    * gffutils
+    * pandas (0.23.1)
+    * pybedtools (0.7.10)
+    * numpy (1.14.3)
+    * gffutils (0.9)
 
 ### Installing dependencies
 
@@ -64,4 +64,15 @@ See the README file *event_analysis_workflow_readme.docx* for more information.
 
 Simulated data and output that was used in the preparing of the manuscript and evelopment of Event Analysis is also available.
 
+## CHANGELOG: v1.0.13c -> v1.0.13d
+
+### Bug fixes:
+
+* Fixed a bug in the buildFusions.py script that throws a ValueError exception when building fusions/exonic regions for chromosomes with a single exon. This appears to affect FlyBase dmel/6.17 and dsim/2.02 GFF annotations
+
+### Changes:
+
+* Updated the make_gff_db.py script. If the db file already exists then the existing file is deleted and recreated.
+
+* Updated conda recipe: specific version requirements added for NumPy (v1.14.3) and GFFutils (v0.9). Version requirements for pybedtools (v.0.7.10) and Pandas (v.0.23.1) have also been set to specific versions, instead of minimum version number. This is to ensure compatibility across all installs of Event Analysis.
 

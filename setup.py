@@ -16,7 +16,7 @@ setup(
     name='event_analysis',
 
     # Version
-    version="1.0.12",
+    version="1.0.13d",
 
     description="Event Analysis python workflow",
     long_description=long_description,
@@ -63,5 +63,5 @@ setup(
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed.
-    install_requires=['pandas>=0.19.2','pybedtools>=0.7.10','numpy','gffutils'],
+    install_requires=['pandas=0.23.1','pybedtools=0.7.10','numpy=1.14.3','gffutils=0.9'],
 )

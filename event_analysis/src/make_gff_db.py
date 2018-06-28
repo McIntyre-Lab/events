@@ -20,11 +20,13 @@ def getOptions():
 def main():
     gff_fn=args.gffInput
     db_fn=gff_fn + '.db'
-
+    # check if db file exists and recreate if needed
+    if os.path.isfile(db_fn):
+        print("DB file exists. Deleting and recreating...")
+        os.remove(db_fn)
     gffutils.create_db(gff_fn, db_fn,merge_strategy='create_unique')
     #gffutils.create_db(gff_fn, db_fn)
 
-                        
 if __name__ == '__main__':
     # Parse command line arguments
     global args

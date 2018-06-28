@@ -157,7 +157,6 @@ class _Anno(object):
                     strand = "."
                 else:
                     strand = merged_strand[0]
-                
                 merged_feature = dict(
                     seqid=feature.chrom,
                     source='.',
@@ -183,18 +182,32 @@ class _Anno(object):
         # need to yield the last one.
         if len(features) == 1:
             feature = features[0]
-        merged_feature = dict(
-            seqid=feature.chrom,
-            source='.',
-            featuretype=feature.featuretype,
-            start=current_merged_start,
-            end=current_merged_stop,
-            score='.',
-            strand=strand,
-            frame='.',
-            attributes='',
-            merged=flagMerge,
-            exonId=merged_ids)
+        try:
+            merged_feature = dict(
+                seqid=feature.chrom,
+                source='.',
+                featuretype=feature.featuretype,
+                start=current_merged_start,
+                end=current_merged_stop,
+                score='.',
+                strand=strand,
+                frame='.',
+                attributes='',
+                merged=flagMerge,
+               exonId=merged_ids)
+        except:
+            merged_feature = dict(
+                seqid=feature.chrom,
+                source='.',
+                featuretype=feature.featuretype,
+                start=current_merged_start,
+                end=current_merged_stop,
+                score='.',
+                strand=feature.strand,
+                frame='.',
+                attributes='',
+                merged=flagMerge,
+               exonId=merged_ids)
         yield merged_feature
 
 class FlyGff(_Anno):

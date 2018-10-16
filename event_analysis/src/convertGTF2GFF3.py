@@ -48,12 +48,24 @@ def main():
         # Import database
         db_fn= args.gffInput + '.db'
         db = gffutils.FeatureDB(db_fn)
-        
+        # Get a list of chromosomes - use this to report if there are any chromosomes skipped over
+        chromListGFF = []
+        flagChromGFF = 0
+        # List for chromosomes being output
+        chromListOUT = []
+        try:
+            chroms = db.features_of_type(('chromosome','chromosome_arm','golden_path_region'))
+            for chrom in chroms:
+                chromListGFF.append(str(chrom.id))
+            flagChromGFF = 1
+        except:
+            print("test")
+
         # Get Number of genes - doing this further down doesn't seem to let the entries print so I've put it up here
         genes = db.features_of_type('gene')
         geneNum=0
         geneLastIndex=len(list(genes))
-        
+
         # Set GFF output array
         
         gffList=[]
@@ -132,6 +144,8 @@ def main():
             # Adds in the last exon again so that it actually outputs
             # Could probably change this to handle similar to chromosome but this works right now
             if len(exonList)==0:
+                print("Gene " + geneName + " has no valid exons and will be skipped.")
+                geneNum = geneNum + 1
                 continue
             else:
                 exonList.append(exonList[len(exonList)-1])
@@ -229,13 +243,30 @@ def main():
                     geneNum=geneNum+1
                     currChromName=chromName
                     currChromStop=chromStop
+                    chromListOUT.append(str(currChromName))
             
             if geneNum == geneLastIndex:
                 chromEnd=currChromStop+1000
                 chromEntry=[currChromName, geneSource, 'chromosome', '1', str(chromEnd), '.' ,'.' ,'.', "ID=" + str(currChromName) + ";Name=" + str(currChromName)]
+                chromListOUT.append(str(currChromName))
                 outputFile.write("\t".join(chromEntry) + "\n")
-        
-   
+
+        # Chromosome check
+        if flagChromGFF == 1:
+            chrMissList = list(set(chromListGFF) - set(chromListOUT))
+            if len(chrMissList) > 0 :
+                print("Some chromosomes/contigs/scaffolds from the input GFF/GTF were not written \n "
+                      "to the output GFF file. This is likely due to the absence of valid exons \n "
+                      "on these chromosome. Please validate your input and output files. \n")
+                print(str(len(chrMissList)) + " chromosomes excluded due to no valid exon entries were written to \n "  +
+                      args.outputFile + ".skipped_chrom")
+                with open(args.outputFile+ ".skipped_chrom", 'w') as outputSkipFile:
+                    outputSkipFile.write("\n".join(chrMissList))
+            else:
+                print("All chromosomes/contigs/scaffolds/etc. processed and written to output.")
+        else:
+            print("Chromsome check skipped due to no chromsome entries in original GFF/GTF file.")
+        print("GFF conversion complete! Please validate your output GFF file.")
 
 if __name__ == '__main__':
     # Parse command line arguments

@@ -1,4 +1,4 @@
-# Event Analysis v1.0.13e
+# Event Analysis v1.0.14
 Event Analysis is an annotation-driven, transcriptional event-based method for transcriptome reference reduction by using the detection and quantification of transcriptonal events (junctions, exons, exon fragments) to identify what transcripts are likely present and which are likely not present given experimental data.
 
 It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (URL to be added).
@@ -50,7 +50,7 @@ Next, clone the git repository for Event Analysis using the command:
 
 This will create a local copy of the most recent version of Event Analysis in your specified installation folder. If you prefer not to clone the git repository, you can also obtain the code using:
 
-    `curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.13d.tar.gz | tar xz`
+    `curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.14.tar.gz | tar xz`
 
 This will also unpack the tarball into your Event Analysis install directory.
 
@@ -64,8 +64,18 @@ See the README file *event_analysis_workflow_readme.docx* for more information.
 
 Simulated data and output that was used in the preparing of the manuscript and evelopment of Event Analysis is also available.
 
-## CHANGELOG: v1.0.13c -> v1.0.13e
+## CHANGELOG: 
 
+## v1.0.13e -> v.1.0.14
+### Bug fixes:
+
+* Fixed a bug in convertGTF2GFF3.py that caused the final chromosome entry to not write to the output GFF3 file. This occurs when a gene in the input GTF/GFF file has no valid exons listed. Now if at least one exon cannot be found for a given gene, a warning message will print to the console ("Gene [gene_id] has no valid exons and will be skipped."). This notably occurs with some versions of FlyBase GFF files that contain gene entries for miRNAs, but no corresponding exon entries.
+
+### Changes:
+
+* Also added to convertGTF2GFF3.py is a chromosome check. If a chromosome (or contig, scaffold, golden_path_region, etc.) has no valid exons (or no genes), it will not be written to the output GFF3 file. Previously, there was no message or indication that a featureless chromosome was skipped. Now the list of chromosomes/contigs/scaffolds/etc. are written to an output file (output GFF filename, appended with ".skipped_chrom"). If the script cannot determine the list of chromosomes in the input GTF/GFF file (for example, there is no entry for "chromosome", "chromosome_arm", or "golden_path_region") then the chromosome check is skipped and no list of skipped chromosomes is written. Users should validate that any chromsomes skipped in the output GFF3 are due to the absence of valid exon entries in the input GTF/GFF file.
+
+## v1.0.13c -> v1.0.13e
 ### Bug fixes:
 
 * Fixed a bug in the buildFusions.py script that throws a ValueError exception when building fusions/exonic regions for chromosomes with a single exon. This appears to affect FlyBase dmel/6.17 and dsim/2.02 GFF annotations

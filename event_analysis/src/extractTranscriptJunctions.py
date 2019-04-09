@@ -69,47 +69,43 @@ def main():
 
 
     # Open the output BED file
-    with open(csvOut,'w') as outputFile:
-        for rna in rnas:
+    for rna in rnas:
+        # Get all exons
+        exonList = list(db.children(rna,featuretype='exon',order_by=('start','end')))
+        
+        # Skip genes that only have 1 exon, or genes that don't have an exon e.g. miRNA
+        if len(exonList) == 0 or len(exonList) == 1:
+            continue
 
-            # Get all exons
-            exonList = list(db.children(rna,featuretype='exon',order_by=('start','end')))
-            
-            # Skip genes that only have 1 exon, or genes that don't have an exon e.g. miRNA
-            if len(exonList) == 0 or len(exonList) == 1:
-                continue
+        # Create list of overlapping exons
+        # Note: mod(mdg4) has exons on both strands, so ignore_strand needs
+        # to be set for it
+        mergedExons = list(db.merge(exonList,ignore_strand=True))
 
-            # Create list of overlapping exons
-            # Note: mod(mdg4) has exons on both strands, so ignore_strand needs
-            # to be set for it
-            #mergedExons = list(db.merge_features(exonList,ignore_strand=True))
-            mergedExons = list(db.merge(exonList,ignore_strand=True))
+        # Sort merged exons by start postiion
+        mergedExons.sort(key=start_pos)
 
-            # Sort merged exons by start postiion
-            mergedExons.sort(key=start_pos)
+        # Using the merged exons to identify overlapping exons create an array where
+        # overlapping exons are grouped together
+        exonArray = createExonArray(exonList,mergedExons)
 
-            # Using the merged exons to identify overlapping exons create an array where
-            # overlapping exons are grouped together
-            exonArray = createExonArray(exonList,mergedExons)
+        # Now create all possible junctions 
+        junctionArray = createJunctionArray(exonArray)
+        # Create BED file
+        for i in range(0,len(junctionArray)):
 
-            # Now create all possible junctions 
-            junctionArray = createJunctionArray(exonArray)
-
-            # Create BED file
-            for i in range(0,len(junctionArray)):
-
-                # Construct various parts of the junction BED file
-                junctionID=''.join(junctionArray[i][0].attributes['Name']) + '|' + ''.join(junctionArray[i][1].attributes['Name']) 
-                xscriptGenes=list(db.parents(rna, featuretype='gene'))
-                xscriptGene=[]
-                for gene in xscriptGenes:
-                    xscriptGene.append(gene.id)
-                transcriptID=''.join(rna.id)
-                geneID=''.join(xscriptGene)
-                juncCoord=str(junctionArray[i][0].chrom) + ':' + str(junctionArray[i][0].stop) + ':' + str(junctionArray[i][1].start) + ':' + str(junctionArray[i][0].strand)
-                csvArray=[junctionID, juncCoord, transcriptID, geneID]
-                # Output to BED file
-                outputFile.write(",".join(str(i) for i in csvArray)+"\n")
+            # Construct various parts of the junction BED file
+            junctionID=''.join(junctionArray[i][0].attributes['Name']) + '|' + ''.join(junctionArray[i][1].attributes['Name']) 
+            xscriptGenes=list(db.parents(rna, featuretype='gene'))
+            xscriptGene=[]
+            for gene in xscriptGenes:
+                xscriptGene.append(gene.id)
+            transcriptID=''.join(rna.id)
+            geneID=''.join(xscriptGene)
+            juncCoord=str(junctionArray[i][0].chrom) + ':' + str(junctionArray[i][0].stop) + ':' + str(junctionArray[i][1].start) + ':' + str(junctionArray[i][0].strand)
+            csvArray=[junctionID, juncCoord, transcriptID, geneID]
+            # Output to BED file
+            csvOut.write(",".join(str(i) for i in csvArray)+"\n")
     
     csvOut.close()
                         

@@ -58,7 +58,7 @@ python $SCRIPTS/build_unambiguous_introns_from_fusions.py --input-fusion-file $O
 echo "Extracting logical junctions"
 ### Size of junction sequences is a maximum of the half of the read size + 12, either side of the junction site
 ### Calculate
-JUNCSIZE=$(expr ${READSIZE} / 2)
+JUNCSIZE=$(expr ${READSIZE} / 2 + 12)
 
 python $SCRIPTS/extractJunctions.py --input ${GFF}.db --output $OUTDIR/${PREFIX}_logical_junctions.bed --size ${JUNCSIZE}
 

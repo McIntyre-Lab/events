@@ -1,7 +1,12 @@
-# Event Analysis v1.0.14
+# Event Analysis v1.0.16
 Event Analysis is an annotation-driven, transcriptional event-based method for transcriptome reference reduction by using the detection and quantification of transcriptonal events (junctions, exons, exon fragments) to identify what transcripts are likely present and which are likely not present given experimental data.
 
-It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (URL to be added).
+It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (Newman et al, 2018, "Event Analysis : using transcript events to improve estimates of abundance in RNA-seq data", G3: Genes, Genomes, Genetics; http://www.g3journal.org/content/8/9/2923).
+
+## Citing Event Analysis
+To cite Event Analysis:
+Newman, JRB, Concannon P, Tardaguila M, Conesa A, McIntyre LM, (2018) "Event Analysis: Using Transcript Events To Improve Estimates of Abundance in RNA-seq Data",
+G3: Genes, Genomes, Genetics. v8(9), p2923-2940, https://doi.org/10.1534/g3.118.200373 
 
 ## Installation instructions
 
@@ -46,11 +51,11 @@ Create and navigate to the path where you would like to install Event Analysis. 
 
 Next, clone the git repository for Event Analysis using the command:
 
-    `git clone http2://github.com/McIntyre-Lab/events`
+    `git clone https://github.com/McIntyre-Lab/events`
 
 This will create a local copy of the most recent version of Event Analysis in your specified installation folder. If you prefer not to clone the git repository, you can also obtain the code using:
 
-    `curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.14.tar.gz | tar xz`
+    `curl -sL https://github.com/McIntyre-Lab/events/archive/v1.0.16.tar.gz | tar xz`
 
 This will also unpack the tarball into your Event Analysis install directory.
 
@@ -65,6 +70,15 @@ See the README file *event_analysis_workflow_readme.docx* for more information.
 Simulated data and output that was used in the preparing of the manuscript and evelopment of Event Analysis is also available.
 
 ## CHANGELOG: 
+
+## v1.0.14 -> v1.0.16
+
+* Added citation and URL of the G3 manuscript.
+
+### Bug fixes:
+* Fixes a minor error when extracting annotated junctions when attempting to reopen the output file for writing.
+* Fixes a minor bug in the run_buildAnnotations.sh script.
+
 
 ## v1.0.13e -> v.1.0.14
 ### Bug fixes:

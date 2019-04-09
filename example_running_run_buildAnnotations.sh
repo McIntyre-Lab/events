@@ -16,7 +16,8 @@ GFF=/path/to/mm10.gff
 ## Path to genome FASTA
 FASTA=/path/to/mm10.fa
 
-## Size (in nt) of reads
+## Size (in nt) of reads or each read pair (set to maximum if you have reads of 
+## various lengths, i.e. from adapter trimming)
 READSIZE=56
 
 ## Output directory. If it does not exist, the annotation build script with create it

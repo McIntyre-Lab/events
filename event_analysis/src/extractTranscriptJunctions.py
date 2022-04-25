@@ -80,7 +80,10 @@ def main():
         # Create list of overlapping exons
         # Note: mod(mdg4) has exons on both strands, so ignore_strand needs
         # to be set for it
+        #try:
         mergedExons = list(db.merge(exonList,ignore_strand=True))
+        #except:
+        #mergedExons = list(db.merge(exonList, merge_criteria=(gffutils.merge_criteria.strand, gffutils.merge_criteria.overlap_any_inclusive)))
 
         # Sort merged exons by start postiion
         mergedExons.sort(key=start_pos)

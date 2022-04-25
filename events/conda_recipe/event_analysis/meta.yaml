@@ -1,0 +1,35 @@
+package:
+  name: event-analysis
+  version: "1.0.16"
+
+source:
+  git_rev: v1.0.16
+  git_url: https://github.com/McIntyre-Lab/events.git
+  folder: event_analysis
+
+requirements:
+  host:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - pandas
+    - pybedtools
+    - numpy
+    - gffutils
+
+test:
+  imports:
+    - argparse
+    - pandas
+    - logging
+    - pybedtools
+    - sqlite3
+    - gffutils
+    - glob
+
+about:
+  home: https://github.com/McIntyre-Lab/events.git
+  license: MIT
+

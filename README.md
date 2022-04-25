@@ -73,7 +73,7 @@ Simulated data and output that was used in the preparing of the manuscript and e
 
 ## v1.0.16 -> v1.0.17
 * Updated extractTranscriptJunctions.py to be compatible with later versions of GFFutils
-* Missing hard version requirement for python dependencies added to conda environment recipe
+* Missing hard version requirement for python dependencies added to conda environment recipe.
 
 ## v1.0.14 -> v1.0.16
 

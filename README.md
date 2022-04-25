@@ -1,4 +1,4 @@
-# Event Analysis v1.0.16
+# Event Analysis v1.0.17
 Event Analysis is an annotation-driven, transcriptional event-based method for transcriptome reference reduction by using the detection and quantification of transcriptonal events (junctions, exons, exon fragments) to identify what transcripts are likely present and which are likely not present given experimental data.
 
 It comprises of a collection of python scripts and example shell submission scripts for Event Analysis. Details on the approach and benchmarking against other methods can be found in the G3:Genomics manuscript (Newman et al, 2018, "Event Analysis : using transcript events to improve estimates of abundance in RNA-seq data", G3: Genes, Genomes, Genetics; http://www.g3journal.org/content/8/9/2923).
@@ -70,6 +70,10 @@ See the README file *event_analysis_workflow_readme.docx* for more information.
 Simulated data and output that was used in the preparing of the manuscript and evelopment of Event Analysis is also available.
 
 ## CHANGELOG: 
+
+## v1.0.16 -> v1.0.17
+* Updated extractTranscriptJunctions.py to be compatible with later versions of GFFutils
+* Missing hard version requirement for python dependencies added to conda environment recipe
 
 ## v1.0.14 -> v1.0.16
 

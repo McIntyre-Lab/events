@@ -99,7 +99,10 @@ def main():
     bedListStr='\n'.join(bedList)
     bedEntry = pybedtools.BedTool(bedListStr, from_string=True)
     # Extract sequence, allow for strandness and splitting
-    bedSeq = bedEntry.sequence(fi=fasta_in, s=True, name=True, split=True, tab=True)
+    try:
+        bedSeq = bedEntry.sequence(fi=fasta_in, s=True, nameOnly=True, split=True, tab=True)
+    except:
+        bedSeq = bedEntry.sequence(fi=fasta_in, s=True, name=True, split=True, tab=True)
     # Get junction sequence
     #juncSeq = str(open(bedSeq.seqfn).read()).split("\n")[1].upper()
     juncSeq = StringIO(str(open(bedSeq.seqfn).read()))
